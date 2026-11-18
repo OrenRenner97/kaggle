@@ -1,4 +1,4 @@
-# 01. Titanic — <проект из брифинга>
+# 01. Titanic — «Второй шанс»: приоритетная помощь при эвакуации
 
 [Брифинг](BRIEF.md) · [Kaggle](https://www.kaggle.com/competitions/titanic)
 
