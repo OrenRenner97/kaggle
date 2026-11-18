@@ -1,0 +1,30 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+.venv/
+*.egg-info/
+dist/
+build/
+
+# данные и артефакты — только локально
+data/*
+!data/README.md
+mlruns/
+mlartifacts/
+mlflow.db
+*.parquet
+*.duckdb
+*.duckdb.wal
+*.onnx
+*.pkl
+*.joblib
+competitions/*/submissions/
+
+# секреты
+.env
+.env.*
+kaggle.json
+access_token
