@@ -1,7 +1,8 @@
 # Соревнования
 
-| # | Папка | Kaggle | Сценарий | Статус |
-|---|-------|--------|----------|--------|
-| 1 | [01_titanic](01_titanic) | [titanic](https://www.kaggle.com/competitions/titanic) | [«Второй шанс»](01_titanic/BRIEF.md): приоритетная помощь при эвакуации | брифинг |
+| # | Папка | Kaggle | Задача | Прод |
+|---|-------|--------|--------|------|
+| 1 | [01_titanic](01_titanic) | [titanic](https://www.kaggle.com/competitions/titanic) | бинарная классификация, малые данные | CatBoost → ONNX + C-библиотека |
 
-Новое соревнование: `cp templates/competition/*.md competitions/NN_slug/`, заполнить, добавить строки сюда и в `PROGRESS.md`.
+Структура соревнования: `README.md` (итоги и мысли) + ноутбуки `01_eda`, `02_models`, `03_errors` (+ свои по задаче).
+Прод-код — в `src/kagglib/<slug>/`.

@@ -5,17 +5,12 @@ download:
 	kaggle competitions download -c $(C) -p data/kaggle/$(C)
 	cd data/kaggle/$(C) && unzip -o -q *.zip && rm -f *.zip
 
-# make submit C=titanic F=competitions/01_titanic/submissions/x.csv M="lgbm v1"
+# make submit C=titanic F=competitions/01_titanic/submissions/catboost.csv M="catboost v1"
 submit:
 	kaggle competitions submit -c $(C) -f $(F) -m "$(M)"
 
-infra-up:
-	docker compose -f infra/docker-compose.yml up -d
+# make nb N=competitions/01_titanic/02_models.ipynb — выполнить ноутбук целиком и сохранить выводы
+nb:
+	cd $(dir $(N)) && uv run jupyter nbconvert --to notebook --execute --inplace --ExecutePreprocessor.timeout=3600 $(notdir $(N))
 
-infra-down:
-	docker compose -f infra/docker-compose.yml down
-
-mlflow:
-	uv run mlflow ui --backend-store-uri sqlite:///mlflow.db --port 5000
-
-.PHONY: download submit infra-up infra-down mlflow
+.PHONY: download submit nb

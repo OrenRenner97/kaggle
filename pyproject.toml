@@ -1,44 +1,53 @@
 [project]
 name = "kaggle-plus"
 version = "0.1.0"
-description = "Соревнования Kaggle как имитация реальных ML-проектов: от сырых источников до деплоя и мониторинга"
+description = "Kaggle: глубокие ноутбуки-разборы + прод-решения в виде переносимых артефактов (ONNX, native)"
 requires-python = ">=3.12,<3.14"
+# Ядро прод-инференса: только то, что нужно, чтобы загрузить артефакт и сделать предсказание
 dependencies = [
     "numpy",
-    "pandas",
     "polars",
     "pyarrow",
-    "duckdb",
-    "scipy",
-    "statsmodels",
+    "onnxruntime",
+]
+
+[project.optional-dependencies]
+# Обучение и экспорт артефактов
+train = [
+    "pandas",
     "scikit-learn",
     "lightgbm",
     "catboost",
     "xgboost",
+    "onnx",
+    "skl2onnx",
+    "onnxmltools",
+]
+# Исследование в ноутбуках
+research = [
+    "scipy",
+    "statsmodels",
     "matplotlib",
     "seaborn",
-    "mlflow",
-    "pandera",
     "shap",
+    "duckdb",
 ]
 
-[project.optional-dependencies]
-api = ["fastapi", "uvicorn[standard]"]
-db = ["psycopg[binary]", "sqlalchemy"]
-onnx = ["onnx", "onnxruntime", "skl2onnx"]
+[project.scripts]
+kagglib = "kagglib.cli:main"
 
 [dependency-groups]
-dev = ["pytest", "ruff", "jupyterlab", "ipykernel", "httpx"]
+dev = ["pytest", "ruff", "jupyterlab", "ipykernel", "jupytext", "nbconvert"]
 
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/mlkit"]
+packages = ["src/kagglib"]
 
 [tool.pytest.ini_options]
-testpaths = ["tests", "competitions"]
+testpaths = ["tests"]
 addopts = "-q --import-mode=importlib"
 
 [tool.ruff]

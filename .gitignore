@@ -13,14 +13,9 @@ build/
 data/*
 !data/README.md
 mlruns/
-mlartifacts/
-mlflow.db
 *.parquet
 *.duckdb
 *.duckdb.wal
-*.onnx
-*.pkl
-*.joblib
 competitions/*/submissions/
 
 # секреты
@@ -28,3 +23,8 @@ competitions/*/submissions/
 .env.*
 kaggle.json
 access_token
+
+# артефакты моделей: публикуются в GitHub Releases, в git не кладём
+models/*
+!models/README.md
+catboost_info/
